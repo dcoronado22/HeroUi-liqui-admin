@@ -55,7 +55,18 @@ const sidebarItems: SidebarItem[] = [
     },
 ];
 
-const workspaces = [
+interface WorkspaceItem {
+    value: string;
+    label: string;
+}
+
+interface WorkspaceSection {
+    value: string;
+    label: string;
+    items: WorkspaceItem[];
+}
+
+const workspaces: WorkspaceSection[] = [
     {
         value: "0",
         label: "Ambientes",
@@ -105,7 +116,6 @@ export interface SidebarProps extends BaseSidebarProps { }
 export default function Sidebar({
     className,
     defaultSelectedKey = "home",
-    ...props
 }: SidebarProps) {
     return (
         <div className="h-full min-h-[48rem]">
@@ -262,7 +272,7 @@ export default function Sidebar({
                             </div>
                         }
                     >
-                        {(section: SidebarItem) => (
+                        {(section: WorkspaceSection) => (
                             <SelectSection
                                 key={section.value}
                                 hideSelectedIcon
@@ -271,8 +281,7 @@ export default function Sidebar({
                                 items={section.items}
                                 title={section.label}
                             >
-                                {/* @ts-ignore */}
-                                {(item: SidebarItem) => (
+                                {(item: WorkspaceItem) => (
                                     <SelectItem key={item.value} aria-label={item.label} textValue={item.label}>
                                         <div className="flex flex-row items-center justify-between gap-1">
                                             <span>{item.label}</span>
