@@ -114,7 +114,6 @@ const users = [
 export interface SidebarProps extends BaseSidebarProps { }
 
 export default function Sidebar({
-    className,
     defaultSelectedKey = "home",
 }: SidebarProps) {
     return (
