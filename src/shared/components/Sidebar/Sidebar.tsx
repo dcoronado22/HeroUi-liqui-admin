@@ -1,6 +1,7 @@
 import type { SidebarItem } from "@/types/Sidebar.types";
-import React from "react";
-import { Chip, ScrollShadow } from "@heroui/react";
+import {
+    Chip, ScrollShadow, Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem, Button, Avatar, User, Badge, Popover, PopoverTrigger, PopoverContent, Spacer, Select, SelectSection, SelectItem, Input
+} from "@heroui/react";
 import { Icon } from "@iconify/react";
 import SidebarBase from "./SidebarBase";
 import type { SidebarProps as BaseSidebarProps } from "./SidebarBase";
@@ -261,7 +262,7 @@ export default function Sidebar({
                             </div>
                         }
                     >
-                        {(section) => (
+                        {(section: SidebarItem) => (
                             <SelectSection
                                 key={section.value}
                                 hideSelectedIcon
@@ -271,7 +272,7 @@ export default function Sidebar({
                                 title={section.label}
                             >
                                 {/* @ts-ignore */}
-                                {(item) => (
+                                {(item: SidebarItem) => (
                                     <SelectItem key={item.value} aria-label={item.label} textValue={item.label}>
                                         <div className="flex flex-row items-center justify-between gap-1">
                                             <span>{item.label}</span>
