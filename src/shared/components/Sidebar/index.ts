@@ -1,2 +1,5 @@
-export { Sidebar } from "./Sidebar";
-export type { SidebarItem } from "../../../types/Sidebar.types";
+import Sidebar from "./Sidebar";
+import type { SidebarItem } from "@/types/Sidebar.types";
+
+export { Sidebar };
+export type { SidebarItem };

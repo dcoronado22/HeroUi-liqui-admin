@@ -1,32 +1,9 @@
 import type { SidebarItem } from "@/types/Sidebar.types";
 import React from "react";
-import {
-    User,
-    Badge,
-    Avatar,
-    Chip,
-    Button,
-    ScrollShadow,
-    Card,
-    CardBody,
-    CardFooter,
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-    Select,
-    SelectItem,
-    Dropdown,
-    DropdownItem,
-    DropdownMenu,
-    DropdownSection,
-    DropdownTrigger,
-    Input,
-    Spacer,
-    SelectSection,
-} from "@heroui/react";
+import { Chip, ScrollShadow } from "@heroui/react";
 import { Icon } from "@iconify/react";
-// import NotificationsCard from "./notifications-card";
 import SidebarBase from "./SidebarBase";
+import type { SidebarProps as BaseSidebarProps } from "./SidebarBase";
 
 const sidebarItems: SidebarItem[] = [
     {
@@ -122,20 +99,13 @@ const users = [
     },
 ];
 
-/**
- * 💡 TIP: You can use the usePathname hook from Next.js App Router to get the current pathname
- * and use it as the active key for the Sidebar component.
- *
- * ```tsx
- * import {usePathname} from "next/navigation";
- *
- * const pathname = usePathname();
- * const currentPath = pathname.split("/")?.[1]
- *
- * <Sidebar defaultSelectedKey="home" selectedKeys={[currentPath]} />
- * ```
- */
-export default function Component() {
+export interface SidebarProps extends BaseSidebarProps { }
+
+export default function Sidebar({
+    className,
+    defaultSelectedKey = "home",
+    ...props
+}: SidebarProps) {
     return (
         <div className="h-full min-h-[48rem]">
             <div className="relative flex h-full w-72 flex-1 flex-col border-r-small border-divider p-6">
@@ -339,7 +309,7 @@ export default function Component() {
 
                 <ScrollShadow className="-mr-6 h-full max-h-full py-6 pr-6">
                     <SidebarBase
-                        defaultSelectedKey="home"
+                        defaultSelectedKey={defaultSelectedKey}
                         iconClassName="group-data-[selected=true]:text-primary-foreground"
                         itemClasses={{
                             base: "data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 data-[hover=true]:bg-default-300/20 dark:data-[hover=true]:bg-default-200/40",
